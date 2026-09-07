@@ -1,0 +1,6 @@
+/* Nome sob o ícone, no App Switcher, na busca e nos Ajustes. */
+"CFBundleDisplayName" = "Aprenda Dart";
+"CFBundleName" = "Aprenda Dart";
+
+/* Alerta do App Tracking Transparency. */
+"NSUserTrackingUsageDescription" = "O Aprenda Dart não rastreia você e não tem anúncios. Esta permissão só seria pedida se uma versão futura ganhasse um recurso que precise dela.";

@@ -97,8 +97,8 @@ class _TelaSplashState extends State<TelaSplash>
                   opacity: _titulo.value,
                   child: Transform.translate(
                     offset: Offset(0, 10 * (1 - _titulo.value)),
-                    child: const Text(
-                      'Aprenda Dart',
+                    child: Text(
+                      textos.nomeApp,
                       style: TextStyle(
                         inherit: false,
                         fontFamily: '.SF Pro Display',

@@ -66,7 +66,7 @@ const rate = 0.15;          // ✅ the value is right there
 int likes = 120;
 double score = 9.5;
 bool active = true;
-String title = 'Aprenda Dart';
+String title = 'Learn Dart';
 List<String> tags = ['dart', 'flutter'];
 Map<String, int> board = {'Ana': 10, 'Leo': 8};
 

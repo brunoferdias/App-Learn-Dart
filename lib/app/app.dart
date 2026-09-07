@@ -58,10 +58,12 @@ class _AprendaDartAppState extends State<AprendaDartApp> {
           final brilhoEfetivo =
               brilho ?? MediaQuery.platformBrightnessOf(context);
 
+          final textos = _injecao.controladorIdioma.textos;
+
           return EscopoTextos(
-            textos: _injecao.controladorIdioma.textos,
+            textos: textos,
             child: CupertinoApp(
-              title: 'Aprenda Dart',
+              title: textos.nomeApp,
               debugShowCheckedModeBanner: false,
               theme: brilhoEfetivo == Brightness.dark
                   ? TemaApp.escuro()

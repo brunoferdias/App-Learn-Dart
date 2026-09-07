@@ -12,6 +12,8 @@ abstract class Textos {
 
   Idioma get idioma;
 
+  String get nomeApp;
+
   String get voltar;
   String get cancelar;
   String get salvar;

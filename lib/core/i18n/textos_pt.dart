@@ -8,6 +8,9 @@ class TextosPt extends Textos {
   Idioma get idioma => Idioma.portugues;
 
   @override
+  String get nomeApp => 'Aprenda Dart';
+
+  @override
   String get voltar => 'Voltar';
   @override
   String get cancelar => 'Cancelar';
@@ -58,7 +61,7 @@ class TextosPt extends Textos {
   @override
   String get boasVindasSaudacao => 'Olá';
   @override
-  String get boasVindasTitulo => 'Bem-vindo ao Aprenda Dart';
+  String get boasVindasTitulo => 'Bem-vindo ao $nomeApp';
   @override
   String get boasVindasTexto =>
       'Onze lições, 53 exercícios corrigidos na hora e um editor Dart que roda '
@@ -145,7 +148,7 @@ class TextosPt extends Textos {
   String passoDe(int atual, int total) => 'Passo $atual de $total';
 
   @override
-  String get licoesTitulo => 'Aprenda Dart';
+  String get licoesTitulo => nomeApp;
   @override
   String get licoesPrevious => 'Lições';
   @override

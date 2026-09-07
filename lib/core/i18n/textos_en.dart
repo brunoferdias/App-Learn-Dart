@@ -8,6 +8,9 @@ class TextosEn extends Textos {
   Idioma get idioma => Idioma.ingles;
 
   @override
+  String get nomeApp => 'Learn Dart';
+
+  @override
   String get voltar => 'Back';
   @override
   String get cancelar => 'Cancel';
@@ -58,7 +61,7 @@ class TextosEn extends Textos {
   @override
   String get boasVindasSaudacao => 'Hello';
   @override
-  String get boasVindasTitulo => 'Welcome to Aprenda Dart';
+  String get boasVindasTitulo => 'Welcome to $nomeApp';
   @override
   String get boasVindasTexto =>
       'Eleven lessons, 53 exercises graded on the spot, and a Dart editor that '
@@ -147,7 +150,7 @@ class TextosEn extends Textos {
   String passoDe(int atual, int total) => 'Step $atual of $total';
 
   @override
-  String get licoesTitulo => 'Aprenda Dart';
+  String get licoesTitulo => nomeApp;
   @override
   String get licoesPrevious => 'Lessons';
   @override
