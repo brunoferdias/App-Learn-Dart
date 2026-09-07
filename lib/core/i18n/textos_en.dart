@@ -465,6 +465,23 @@ class TextosEn extends Textos {
   String get perfilRodape => 'Built with Flutter and Dart';
 
   @override
+  String get avaliarTitulo => 'Is this app helping you?';
+  @override
+  String get avaliarTexto =>
+      'A review on the App Store takes less than a minute, and it is what makes '
+      'other people find the app. No account, no sign-up.';
+  @override
+  String get avaliarBotao => 'Rate on the App Store';
+  @override
+  String get avaliarObrigadoTitulo => 'Thanks for the review!';
+  @override
+  String get avaliarObrigadoTexto =>
+      'Your review helps more than it looks. If you want to change what you '
+      'wrote, just head back to the App Store.';
+  @override
+  String get avaliarBotaoDeNovo => 'Open the App Store';
+
+  @override
   String get temaSistema => 'System';
   @override
   String get temaSistemaDescricao => 'Follows your device setting';

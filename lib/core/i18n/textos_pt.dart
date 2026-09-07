@@ -466,6 +466,23 @@ class TextosPt extends Textos {
   String get perfilRodape => 'Feito com Flutter e Dart';
 
   @override
+  String get avaliarTitulo => 'Este app está te ajudando?';
+  @override
+  String get avaliarTexto =>
+      'Uma avaliação na App Store leva menos de um minuto e é o que faz outras '
+      'pessoas encontrarem o app. Sem conta, sem cadastro.';
+  @override
+  String get avaliarBotao => 'Avaliar na App Store';
+  @override
+  String get avaliarObrigadoTitulo => 'Obrigado por avaliar!';
+  @override
+  String get avaliarObrigadoTexto =>
+      'Sua avaliação ajuda mais do que parece. Se quiser mudar o que escreveu, '
+      'é só voltar à App Store.';
+  @override
+  String get avaliarBotaoDeNovo => 'Abrir a App Store';
+
+  @override
   String get temaSistema => 'Sistema';
   @override
   String get temaSistemaDescricao => 'Segue o ajuste do seu aparelho';

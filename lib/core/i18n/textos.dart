@@ -210,6 +210,13 @@ abstract class Textos {
   String get perfilRevisarOnboarding;
   String get perfilRodape;
 
+  String get avaliarTitulo;
+  String get avaliarTexto;
+  String get avaliarBotao;
+  String get avaliarObrigadoTitulo;
+  String get avaliarObrigadoTexto;
+  String get avaliarBotaoDeNovo;
+
   String get temaSistema;
   String get temaSistemaDescricao;
   String get temaClaro;

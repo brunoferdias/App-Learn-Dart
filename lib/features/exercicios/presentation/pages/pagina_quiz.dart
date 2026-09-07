@@ -7,6 +7,7 @@ import '../../../../core/tema/cores_app.dart';
 import '../../../../core/tema/tema_app.dart';
 import '../../../../core/widgets/cartao.dart';
 import '../../../../core/widgets/visualizador_codigo.dart';
+import '../../../avaliacao/domain/entities/momento_avaliacao.dart';
 import '../../domain/entities/exercicio.dart';
 import '../controllers/controlador_quiz.dart';
 import '../widgets/cartao_pergunta.dart';
@@ -306,15 +307,47 @@ class _BarraProgresso extends StatelessWidget {
   }
 }
 
-class _TelaResultado extends StatelessWidget {
+class _TelaResultado extends StatefulWidget {
   const _TelaResultado({required this.quiz});
 
   final ControladorQuiz quiz;
 
   @override
+  State<_TelaResultado> createState() => _TelaResultadoState();
+}
+
+class _TelaResultadoState extends State<_TelaResultado> {
+  /// O melhor momento para falar em avaliação: o quiz acabou, a pessoa foi bem
+  /// e não há nada em andamento para interromper. Quem decide se o pedido sai
+  /// mesmo é o ControladorAvaliacao — aqui só avisamos que o momento existiu.
+  @override
+  void initState() {
+    super.initState();
+
+    final quiz = widget.quiz;
+    final percentual = quiz.total == 0
+        ? 0
+        : ((quiz.acertos / quiz.total) * 100).round();
+
+    final momento = switch (percentual) {
+      100 => MomentoAvaliacao.quizPerfeito,
+      >= 70 => MomentoAvaliacao.quizComBomDesempenho,
+      _ => null,
+    };
+
+    // Depois do frame: um quiz mal resolvido não é hora, e nem o `initState`.
+    if (momento == null) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      EscopoApp.de(context).controladorAvaliacao.registrarMomento(momento);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final paleta = context.paleta;
     final textos = context.textos;
+    final quiz = widget.quiz;
     final percentual = ((quiz.acertos / quiz.total) * 100).round();
 
     final (String titulo, String frase) = switch (percentual) {

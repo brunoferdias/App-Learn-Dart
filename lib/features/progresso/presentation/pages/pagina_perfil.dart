@@ -9,6 +9,7 @@ import '../../../../core/tema/tema_app.dart';
 import '../../../../core/widgets/cartao.dart';
 import '../../../../core/widgets/texto_rico.dart';
 import '../../../../core/widgets/visualizador_codigo.dart';
+import '../../../avaliacao/presentation/widgets/cartao_avaliacao.dart';
 import '../../../onboarding/presentation/widgets/aviso_nao_oficial.dart';
 import '../../../onboarding/presentation/widgets/seletor_idioma.dart';
 import '../controllers/controlador_progresso.dart';
@@ -150,6 +151,9 @@ class PaginaPerfil extends StatelessWidget {
                       ],
                     ),
                   ),
+                  const SizedBox(height: 26),
+
+                  CartaoAvaliacao(controlador: injecao.controladorAvaliacao),
                   const SizedBox(height: 26),
 
                   _Titulo(textos.perfilSobreTitulo),

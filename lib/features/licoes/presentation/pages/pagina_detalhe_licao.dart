@@ -6,6 +6,8 @@ import '../../../../core/tema/cores_app.dart';
 import '../../../../core/tema/tema_app.dart';
 import '../../../../core/widgets/cartao.dart';
 import '../../../../core/widgets/etiqueta.dart';
+import '../../../avaliacao/domain/entities/momento_avaliacao.dart';
+import '../../../avaliacao/presentation/controllers/controlador_avaliacao.dart';
 import '../../../exercicios/presentation/pages/pagina_quiz.dart';
 import '../../../progresso/presentation/controllers/controlador_progresso.dart';
 import '../../domain/entities/licao.dart';
@@ -21,7 +23,9 @@ class PaginaDetalheLicao extends StatelessWidget {
   Widget build(BuildContext context) {
     final paleta = context.paleta;
     final textos = context.textos;
-    final progresso = EscopoApp.de(context).controladorProgresso;
+    final injecao = EscopoApp.de(context);
+    final progresso = injecao.controladorProgresso;
+    final avaliacao = injecao.controladorAvaliacao;
     final cor = corDoNivel(licao.nivel);
 
     return CupertinoPageScaffold(
@@ -122,7 +126,11 @@ class PaginaDetalheLicao extends StatelessWidget {
             ],
 
             const SizedBox(height: 6),
-            _AcoesFinais(licao: licao, progresso: progresso),
+            _AcoesFinais(
+              licao: licao,
+              progresso: progresso,
+              avaliacao: avaliacao,
+            ),
           ],
         ),
       ),
@@ -131,10 +139,15 @@ class PaginaDetalheLicao extends StatelessWidget {
 }
 
 class _AcoesFinais extends StatelessWidget {
-  const _AcoesFinais({required this.licao, required this.progresso});
+  const _AcoesFinais({
+    required this.licao,
+    required this.progresso,
+    required this.avaliacao,
+  });
 
   final Licao licao;
   final ControladorProgresso progresso;
+  final ControladorAvaliacao avaliacao;
 
   @override
   Widget build(BuildContext context) {
@@ -182,7 +195,16 @@ class _AcoesFinais extends StatelessWidget {
           const SizedBox(height: 6),
           CupertinoButton(
             onPressed: () {
+              // Só é um momento bom se a lição estiver sendo concluída agora:
+              // remarcar uma lição velha não conta.
+              final concluindoAgora = !progresso.progresso.concluiu(licao.id);
+
               progresso.marcarLicaoConcluida(licao.id);
+
+              if (concluindoAgora) {
+                avaliacao.registrarMomento(MomentoAvaliacao.licaoConcluida);
+              }
+
               Navigator.of(context).pop();
             },
             child: Text(textos.licaoMarcarConcluida),

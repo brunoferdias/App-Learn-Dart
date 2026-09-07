@@ -15,8 +15,13 @@ Preferencias preferenciasDeTeste({bool onboardingConcluido = true}) {
   return prefs;
 }
 
-Widget appDeTeste({bool onboardingConcluido = true}) => AprendaDartApp(
-  preferencias: preferenciasDeTeste(onboardingConcluido: onboardingConcluido),
+Widget appDeTeste({
+  bool onboardingConcluido = true,
+  Preferencias? preferencias,
+}) => AprendaDartApp(
+  preferencias:
+      preferencias ??
+      preferenciasDeTeste(onboardingConcluido: onboardingConcluido),
   localeDoSistema: 'pt',
 );
 

@@ -2,6 +2,12 @@ import '../core/i18n/controlador_idioma.dart';
 import '../core/i18n/textos.dart';
 import '../core/preferencias/preferencias.dart';
 import '../core/tema/controlador_tema.dart';
+import '../features/avaliacao/data/datasources/avaliacao_local_datasource.dart';
+import '../features/avaliacao/data/repositories/avaliacao_repositorio_impl.dart';
+import '../features/avaliacao/data/servicos/loja_nativa.dart';
+import '../features/avaliacao/domain/repositories/avaliacao_repositorio.dart';
+import '../features/avaliacao/domain/usecases/gerenciar_avaliacao.dart';
+import '../features/avaliacao/presentation/controllers/controlador_avaliacao.dart';
 import '../features/exercicios/data/datasources/exercicios_locais_datasource.dart';
 import '../features/exercicios/data/repositories/exercicio_repositorio_impl.dart';
 import '../features/exercicios/domain/repositories/exercicio_repositorio.dart';
@@ -98,10 +104,24 @@ class Injecao {
   );
 
   late final ProgressoLocalDatasource _progressoDatasource =
-      ProgressoEmMemoria();
+      ProgressoEmPreferencias(preferencias);
 
   late final ProgressoRepositorio _progressoRepositorio =
       ProgressoRepositorioImpl(_progressoDatasource);
+
+  late final AvaliacaoLocalDatasource _avaliacaoDatasource =
+      AvaliacaoEmPreferencias(preferencias);
+
+  late final AvaliacaoRepositorio _avaliacaoRepositorio =
+      AvaliacaoRepositorioImpl(_avaliacaoDatasource);
+
+  late final ControladorAvaliacao controladorAvaliacao = ControladorAvaliacao(
+    carregar: CarregarAvaliacao(_avaliacaoRepositorio),
+    registrar: RegistrarMomento(_avaliacaoRepositorio),
+    registrarPedido: RegistrarPedido(_avaliacaoRepositorio),
+    encerrar: EncerrarPedidos(_avaliacaoRepositorio),
+    loja: const LojaNativa(),
+  );
 
   late final ControladorTema controladorTema = ControladorTema(
     preferencias: preferencias,

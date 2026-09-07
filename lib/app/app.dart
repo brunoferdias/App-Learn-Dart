@@ -31,6 +31,7 @@ class _AprendaDartAppState extends State<AprendaDartApp> {
   void initState() {
     super.initState();
     _injecao.controladorProgresso.iniciar();
+    _injecao.controladorAvaliacao.iniciar();
     _injecao.controladorIdioma.addListener(_sincronizarIdioma);
   }
 
