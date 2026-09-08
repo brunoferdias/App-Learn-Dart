@@ -12,6 +12,10 @@ abstract interface class Preferencias {
 
   List<String>? lerListaDeTextos(String chave);
   Future<void> gravarListaDeTextos(String chave, List<String> valor);
+
+  /// Tira a chave do armazenamento. Ler de novo devolve o padrão, como se
+  /// nunca tivesse sido gravada — é assim que o app apaga dados de verdade.
+  Future<void> remover(String chave);
 }
 
 class PreferenciasCompartilhadas implements Preferencias {
@@ -51,6 +55,9 @@ class PreferenciasCompartilhadas implements Preferencias {
   @override
   Future<void> gravarListaDeTextos(String chave, List<String> valor) =>
       _prefs.setStringList(chave, valor);
+
+  @override
+  Future<void> remover(String chave) => _prefs.remove(chave);
 }
 
 class PreferenciasEmMemoria implements Preferencias {
@@ -88,6 +95,9 @@ class PreferenciasEmMemoria implements Preferencias {
   @override
   Future<void> gravarListaDeTextos(String chave, List<String> valor) async =>
       _dados[chave] = List<String>.of(valor);
+
+  @override
+  Future<void> remover(String chave) async => _dados.remove(chave);
 }
 
 abstract final class ChavesPref {

@@ -70,4 +70,34 @@ void main() {
     expect(prefs.lerInteiro(ChavesPref.progressoAcertos), 1);
     expect(prefs.lerInteiro(ChavesPref.progressoErros), 1);
   });
+
+  test('apagar zera o progresso e tira as chaves do disco', () async {
+    await repositorio().salvar(
+      const Progresso(licoesConcluidas: {'a', 'b'}, acertos: 9, erros: 4),
+      textos,
+    );
+
+    final zerado = (await repositorio().apagar(textos)).valorOuNulo!;
+
+    expect(zerado.licoesConcluidas, isEmpty);
+    expect(zerado.acertos, 0);
+    expect(zerado.erros, 0);
+
+    expect(prefs.lerListaDeTextos(ChavesPref.progressoLicoes), isNull);
+    expect(prefs.lerInteiro(ChavesPref.progressoAcertos), 0);
+    expect(prefs.lerInteiro(ChavesPref.progressoErros), 0);
+  });
+
+  test('depois de apagar, reabrir o app continua zerado', () async {
+    await repositorio().salvar(
+      const Progresso(licoesConcluidas: {'null-safety'}, acertos: 3),
+      textos,
+    );
+    await repositorio().apagar(textos);
+
+    final p = (await repositorio().carregar(textos)).valorOuNulo!;
+
+    expect(p.licoesConcluidas, isEmpty);
+    expect(p.acertos, 0);
+  });
 }

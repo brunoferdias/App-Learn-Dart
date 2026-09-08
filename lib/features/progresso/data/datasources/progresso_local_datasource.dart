@@ -4,6 +4,9 @@ import '../models/progresso_model.dart';
 abstract interface class ProgressoLocalDatasource {
   Future<Map<String, dynamic>> ler();
   Future<void> escrever(Map<String, dynamic> dados);
+
+  /// Apaga o que foi gravado. Depois disso, `ler` devolve um progresso zerado.
+  Future<void> limpar();
 }
 
 /// O progresso de verdade: sobrevive a fechar o app, trocar de idioma e
@@ -44,6 +47,15 @@ class ProgressoEmPreferencias implements ProgressoLocalDatasource {
       dados[CamposProgresso.erros] as int? ?? 0,
     );
   }
+
+  /// Remove as chaves em vez de gravar zeros: o que o usuário pediu para
+  /// apagar some do disco, não fica lá com outro valor.
+  @override
+  Future<void> limpar() async {
+    await _prefs.remover(ChavesPref.progressoLicoes);
+    await _prefs.remover(ChavesPref.progressoAcertos);
+    await _prefs.remover(ChavesPref.progressoErros);
+  }
 }
 
 /// Versão descartável, para testes que não querem tocar em disco.
@@ -56,5 +68,10 @@ class ProgressoEmMemoria implements ProgressoLocalDatasource {
   @override
   Future<void> escrever(Map<String, dynamic> dados) async {
     _dados = dados;
+  }
+
+  @override
+  Future<void> limpar() async {
+    _dados = <String, dynamic>{};
   }
 }

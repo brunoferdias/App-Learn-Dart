@@ -9,6 +9,7 @@ class ControladorProgresso extends ChangeNotifier {
     required this.carregar,
     required this.concluir,
     required this.registrar,
+    required this.apagar,
     required this.textos,
   });
 
@@ -17,6 +18,7 @@ class ControladorProgresso extends ChangeNotifier {
   final CarregarProgresso carregar;
   final ConcluirLicao concluir;
   final RegistrarResposta registrar;
+  final ApagarProgresso apagar;
 
   Progresso _progresso = const Progresso();
   Progresso get progresso => _progresso;
@@ -38,5 +40,16 @@ class ControladorProgresso extends ChangeNotifier {
     final r = await registrar(_progresso, textos, acertou: acertou);
     _progresso = r.valorOuNulo ?? _progresso;
     notifyListeners();
+  }
+
+  /// Devolve `true` quando o apagamento foi até o fim — a tela só avisa
+  /// "pronto" se o disco realmente ficou limpo.
+  Future<bool> apagarDados() async {
+    final r = await apagar(textos);
+    final zerado = r.valorOuNulo;
+    if (zerado == null) return false;
+    _progresso = zerado;
+    notifyListeners();
+    return true;
   }
 }

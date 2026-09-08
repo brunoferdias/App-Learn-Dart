@@ -30,6 +30,10 @@ import '../features/playground/domain/repositories/playground_repositorio.dart';
 import '../features/playground/domain/usecases/analisar_codigo.dart';
 import '../features/playground/domain/usecases/executar_codigo.dart';
 import '../features/playground/presentation/controllers/controlador_playground.dart';
+import '../features/privacidade/data/datasources/documento_legal_datasource.dart';
+import '../features/privacidade/data/repositories/documento_legal_repositorio_impl.dart';
+import '../features/privacidade/domain/repositories/documento_legal_repositorio.dart';
+import '../features/privacidade/domain/usecases/obter_documento_legal.dart';
 import '../features/progresso/data/datasources/progresso_local_datasource.dart';
 import '../features/progresso/data/repositories/progresso_repositorio_impl.dart';
 import '../features/progresso/domain/repositories/progresso_repositorio.dart';
@@ -103,6 +107,16 @@ class Injecao {
     _cenarioRepositorio,
   );
 
+  late final DocumentoLegalDatasource _documentoLegalDatasource =
+      const DocumentoLegalEmMemoria();
+
+  late final DocumentoLegalRepositorio _documentoLegalRepositorio =
+      DocumentoLegalRepositorioImpl(_documentoLegalDatasource);
+
+  late final ObterDocumentoLegal obterDocumentoLegal = ObterDocumentoLegal(
+    _documentoLegalRepositorio,
+  );
+
   late final ProgressoLocalDatasource _progressoDatasource =
       ProgressoEmPreferencias(preferencias);
 
@@ -139,6 +153,7 @@ class Injecao {
     carregar: CarregarProgresso(_progressoRepositorio),
     concluir: ConcluirLicao(_progressoRepositorio),
     registrar: RegistrarResposta(_progressoRepositorio),
+    apagar: ApagarProgresso(_progressoRepositorio),
     textos: controladorIdioma.textos,
   );
 

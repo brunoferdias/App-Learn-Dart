@@ -12,6 +12,7 @@ import '../../../../core/widgets/visualizador_codigo.dart';
 import '../../../avaliacao/presentation/widgets/cartao_avaliacao.dart';
 import '../../../onboarding/presentation/widgets/aviso_nao_oficial.dart';
 import '../../../onboarding/presentation/widgets/seletor_idioma.dart';
+import '../../../privacidade/presentation/widgets/secao_privacidade.dart';
 import '../controllers/controlador_progresso.dart';
 
 class PaginaPerfil extends StatelessWidget {
@@ -154,6 +155,11 @@ class PaginaPerfil extends StatelessWidget {
                   const SizedBox(height: 26),
 
                   CartaoAvaliacao(controlador: injecao.controladorAvaliacao),
+                  const SizedBox(height: 26),
+
+                  _Titulo(textos.privacidadeSecao),
+                  const SizedBox(height: 10),
+                  const SecaoPrivacidade(),
                   const SizedBox(height: 26),
 
                   _Titulo(textos.perfilSobreTitulo),

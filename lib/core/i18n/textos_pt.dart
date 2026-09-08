@@ -466,6 +466,52 @@ class TextosPt extends Textos {
   String get perfilRodape => 'Feito com Flutter e Dart';
 
   @override
+  String get privacidadeSecao => 'Privacidade e dados';
+  @override
+  String get privacidadeCartaoTitulo => 'Política de Privacidade e Termos';
+  @override
+  String get privacidadeCartaoTexto =>
+      'O app não coleta nada, não envia nada e funciona offline. O documento '
+      'completo está aqui dentro, sem precisar de internet.';
+  @override
+  String get privacidadePaginaTitulo => 'Privacidade';
+  @override
+  String get privacidadeResumoRotulo => 'Em uma frase';
+  @override
+  String get privacidadeAtualizado => 'Atualizado em';
+  @override
+  String get privacidadeContato => 'Contato';
+  @override
+  String privacidadeParte(int numero) => 'Parte $numero';
+
+  @override
+  String get apagarDadosBotao => 'Apagar dados salvos';
+  @override
+  String get apagarDadosTexto =>
+      'Remove do aparelho as lições marcadas como concluídas e a contagem de '
+      'acertos e erros. Idioma e tema continuam como estão.';
+  @override
+  String get apagarDadosConfirmaTitulo => 'Apagar seu progresso?';
+  @override
+  String get apagarDadosConfirmaTexto =>
+      'As lições concluídas e a contagem de acertos e erros vão embora deste '
+      'aparelho. Não dá para desfazer.';
+  @override
+  String get apagarDadosConfirmaBotao => 'Apagar';
+  @override
+  String get apagarDadosProntoTitulo => 'Dados apagados';
+  @override
+  String get apagarDadosProntoTexto =>
+      'Seu progresso foi removido deste aparelho. Você recomeça do zero '
+      'quando quiser.';
+  @override
+  String get apagarDadosFalhouTitulo => 'Não deu para apagar';
+  @override
+  String get apagarDadosFalhouTexto =>
+      'O aparelho não deixou gravar a mudança agora. Tente de novo em '
+      'instantes.';
+
+  @override
   String get avaliarTitulo => 'Este app está te ajudando?';
   @override
   String get avaliarTexto =>
@@ -561,4 +607,6 @@ class TextosPt extends Textos {
   String erroLerProgresso(Object e) => 'Erro ao ler o progresso: $e';
   @override
   String erroSalvarProgresso(Object e) => 'Erro ao salvar o progresso: $e';
+  @override
+  String erroApagarProgresso(Object e) => 'Erro ao apagar o progresso: $e';
 }

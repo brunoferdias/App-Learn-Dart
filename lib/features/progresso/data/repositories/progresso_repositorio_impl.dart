@@ -33,4 +33,14 @@ class ProgressoRepositorioImpl implements ProgressoRepositorio {
       return Resultado.falha(textos.erroSalvarProgresso(e));
     }
   }
+
+  @override
+  Future<Resultado<Progresso>> apagar(Textos textos) async {
+    try {
+      await _datasource.limpar();
+      return const Resultado.ok(Progresso());
+    } catch (e) {
+      return Resultado.falha(textos.erroApagarProgresso(e));
+    }
+  }
 }

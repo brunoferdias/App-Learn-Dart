@@ -27,6 +27,16 @@ class ConcluirLicao {
   }
 }
 
+/// O botão "apagar dados" do perfil. Não recebe o progresso atual porque não
+/// depende dele: o que existir no aparelho vai embora.
+class ApagarProgresso {
+  const ApagarProgresso(this._repositorio);
+  final ProgressoRepositorio _repositorio;
+
+  Future<Resultado<Progresso>> call(Textos textos) =>
+      _repositorio.apagar(textos);
+}
+
 class RegistrarResposta {
   const RegistrarResposta(this._repositorio);
   final ProgressoRepositorio _repositorio;

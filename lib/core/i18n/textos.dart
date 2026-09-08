@@ -210,6 +210,25 @@ abstract class Textos {
   String get perfilRevisarOnboarding;
   String get perfilRodape;
 
+  String get privacidadeSecao;
+  String get privacidadeCartaoTitulo;
+  String get privacidadeCartaoTexto;
+  String get privacidadePaginaTitulo;
+  String get privacidadeResumoRotulo;
+  String get privacidadeAtualizado;
+  String get privacidadeContato;
+  String privacidadeParte(int numero);
+
+  String get apagarDadosBotao;
+  String get apagarDadosTexto;
+  String get apagarDadosConfirmaTitulo;
+  String get apagarDadosConfirmaTexto;
+  String get apagarDadosConfirmaBotao;
+  String get apagarDadosProntoTitulo;
+  String get apagarDadosProntoTexto;
+  String get apagarDadosFalhouTitulo;
+  String get apagarDadosFalhouTexto;
+
   String get avaliarTitulo;
   String get avaliarTexto;
   String get avaliarBotao;
@@ -255,4 +274,5 @@ abstract class Textos {
   String erroCarregarCenarios(Object e);
   String erroLerProgresso(Object e);
   String erroSalvarProgresso(Object e);
+  String erroApagarProgresso(Object e);
 }

@@ -465,6 +465,51 @@ class TextosEn extends Textos {
   String get perfilRodape => 'Built with Flutter and Dart';
 
   @override
+  String get privacidadeSecao => 'Privacy and data';
+  @override
+  String get privacidadeCartaoTitulo => 'Privacy Policy and Terms';
+  @override
+  String get privacidadeCartaoTexto =>
+      'The app collects nothing, sends nothing and works offline. The full '
+      'document is right here, no internet needed.';
+  @override
+  String get privacidadePaginaTitulo => 'Privacy';
+  @override
+  String get privacidadeResumoRotulo => 'The short version';
+  @override
+  String get privacidadeAtualizado => 'Last updated';
+  @override
+  String get privacidadeContato => 'Contact';
+  @override
+  String privacidadeParte(int numero) => 'Part $numero';
+
+  @override
+  String get apagarDadosBotao => 'Erase saved data';
+  @override
+  String get apagarDadosTexto =>
+      'Removes the lessons marked as completed and the right/wrong answer '
+      'counts from this device. Language and theme stay as they are.';
+  @override
+  String get apagarDadosConfirmaTitulo => 'Erase your progress?';
+  @override
+  String get apagarDadosConfirmaTexto =>
+      'The completed lessons and the right/wrong answer counts leave this '
+      'device. This cannot be undone.';
+  @override
+  String get apagarDadosConfirmaBotao => 'Erase';
+  @override
+  String get apagarDadosProntoTitulo => 'Data erased';
+  @override
+  String get apagarDadosProntoTexto =>
+      'Your progress was removed from this device. You can start over '
+      'whenever you like.';
+  @override
+  String get apagarDadosFalhouTitulo => 'Could not erase';
+  @override
+  String get apagarDadosFalhouTexto =>
+      'The device would not save the change right now. Try again in a moment.';
+
+  @override
   String get avaliarTitulo => 'Is this app helping you?';
   @override
   String get avaliarTexto =>
@@ -556,4 +601,6 @@ class TextosEn extends Textos {
   String erroLerProgresso(Object e) => 'Could not read your progress: $e';
   @override
   String erroSalvarProgresso(Object e) => 'Could not save your progress: $e';
+  @override
+  String erroApagarProgresso(Object e) => 'Could not erase your progress: $e';
 }
